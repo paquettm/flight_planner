@@ -1,0 +1,324 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Example PHP MVC Web Application\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-03 16:40-0400\n"
+"PO-Revision-Date: 2022-04-03 16:42-0400\n"
+"Last-Translator: \n"
+"Language-Team: github.com/paquettm\n"
+"Language: fr_CA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: app/views/Animal/contactInformation.php:1 app/views/Animal/create.php:1
+#: app/views/Animal/details.php:1 app/views/Animal/feedback.php:1
+#: app/views/Animal/index.php:1 app/views/Animal/update.php:1
+#: app/views/Animal_with_files/contactInformation.php:1
+#: app/views/Animal_with_files/create.php:1
+#: app/views/Animal_with_files/feedback.php:1
+#: app/views/Animal_with_files/index.php:1
+#: app/views/Client/contactInformation.php:1 app/views/Client/create.php:1
+#: app/views/Client/details.php:1 app/views/Client/feedback.php:1
+#: app/views/Client/index.php:1 app/views/Client/update.php:1
+#: app/views/Main/index.php:1 app/views/User/login.php:1
+#: app/views/User/register.php:1
+msgid "ltr"
+msgstr "ltr"
+
+#: app/views/Animal/contactInformation.php:7
+#: app/views/Animal_with_files/contactInformation.php:7
+#: app/views/Client/contactInformation.php:7
+msgid "Contact information"
+msgstr "Informations de contact"
+
+#: app/views/Animal/contactInformation.php:15
+#: app/views/Animal_with_files/contactInformation.php:15
+#: app/views/Client/contactInformation.php:15
+msgid "Contact us"
+msgstr "Nous contacter"
+
+#: app/views/Animal/create.php:7 app/views/Animal_with_files/create.php:7
+msgid "Animal Create"
+msgstr "Création d'un animal"
+
+#: app/views/Animal/create.php:19 app/views/Animal_with_files/create.php:15
+msgid "Create an animal"
+msgstr "Créer un animal"
+
+#: app/views/Animal/create.php:20 app/views/Animal_with_files/create.php:16
+msgid "Please enter the details of the animal that you want to create."
+msgstr "Veuillez entrer les détails de l'animal que vous désirez créer."
+
+#: app/views/Animal/create.php:22 app/views/Animal/details.php:21
+#: app/views/Animal/feedback.php:16 app/views/Animal/update.php:21
+#: app/views/Animal_with_files/create.php:18
+#: app/views/Animal_with_files/feedback.php:16 app/views/Client/feedback.php:16
+msgid "Animal name"
+msgstr "Nom de l'animal"
+
+#: app/views/Animal/create.php:23 app/views/Animal/details.php:22
+#: app/views/Animal/feedback.php:17 app/views/Animal/update.php:22
+#: app/views/Animal_with_files/create.php:19
+#: app/views/Animal_with_files/feedback.php:17 app/views/Client/feedback.php:17
+msgid "Birth date"
+msgstr "Dat de naissance"
+
+#: app/views/Animal/create.php:24 app/views/Animal/feedback.php:18
+#: app/views/Animal_with_files/create.php:20
+#: app/views/Animal_with_files/feedback.php:18 app/views/Client/create.php:22
+#: app/views/Client/feedback.php:18
+msgid "Create!"
+msgstr "Créer!"
+
+#: app/views/Animal/details.php:7
+msgid "Animal Details"
+msgstr "Détails de l'animal"
+
+#: app/views/Animal/details.php:19
+msgid "Animal details"
+msgstr "Détails de l'animal"
+
+#: app/views/Animal/feedback.php:7 app/views/Animal_with_files/feedback.php:7
+#: app/views/Client/feedback.php:7
+msgid "Animal Feedback"
+msgstr "Rétroaction Animal"
+
+#: app/views/Animal/feedback.php:14 app/views/Animal_with_files/feedback.php:14
+#: app/views/Client/feedback.php:14
+msgid "Feedback of the animal data"
+msgstr "Rétroaction des données de l'animal"
+
+#: app/views/Animal/index.php:7 app/views/Animal_with_files/index.php:7
+msgid "Animal Index"
+msgstr "Index des animaux"
+
+#: app/views/Animal/index.php:19 app/views/Animal_with_files/index.php:15
+msgid "All Animals"
+msgstr "Tous les animaux"
+
+#: app/views/Animal/index.php:20 app/views/Animal_with_files/index.php:16
+msgid "This is the list of animals."
+msgstr "Ceci est la liste des animaux."
+
+#: app/views/Animal/index.php:21
+msgid "Create a new animal"
+msgstr "Créer un nouvel animal"
+
+#: app/views/Animal/index.php:23 app/views/Animal_with_files/index.php:18
+msgid "Animal Name"
+msgstr "Nom de l'animal"
+
+#: app/views/Animal/index.php:23 app/views/Animal_with_files/index.php:18
+msgid "Date of birth"
+msgstr "Date de naissance"
+
+#: app/views/Animal/index.php:23 app/views/Client/index.php:18
+msgid "actions"
+msgstr "actions"
+
+#: app/views/Animal/index.php:36 app/views/Client/index.php:27
+msgid "update"
+msgstr "mettre à jour"
+
+#: app/views/Animal/index.php:37 app/views/Client/index.php:28
+msgid "delete"
+msgstr "effacer"
+
+#: app/views/Animal/index.php:38 app/views/Client/index.php:29
+msgid "details"
+msgstr "détails"
+
+#: app/views/Animal/update.php:7
+msgid "Animal Update"
+msgstr "Mise à jour de l'animal"
+
+#: app/views/Animal/update.php:19
+msgid "Update the animal"
+msgstr "Mettre l'animal à jour"
+
+#: app/views/Animal/update.php:23 app/views/Client/update.php:22
+msgid "Update!"
+msgstr "Mettre à jour!"
+
+#: app/views/Client/create.php:7
+msgid "Client Create"
+msgstr "Création d'un client"
+
+#: app/views/Client/create.php:15
+msgid "Create a client"
+msgstr "Créer un client"
+
+#: app/views/Client/create.php:16
+msgid "Please enter the details of the client that you want to create."
+msgstr "Veuillez entrer les détails du client que vous désirez créer."
+
+#: app/views/Client/create.php:18 app/views/Client/details_subview.php:3
+#: app/views/Client/update.php:18
+msgid "First name"
+msgstr "Prénom"
+
+#: app/views/Client/create.php:19 app/views/Client/details_subview.php:4
+#: app/views/Client/update.php:19
+msgid "Last name"
+msgstr "Nom"
+
+#: app/views/Client/create.php:20 app/views/Client/details_subview.php:5
+#: app/views/Client/index.php:18 app/views/Client/update.php:20
+msgid "Notes"
+msgstr "Notes"
+
+#: app/views/Client/create.php:21 app/views/Client/details_subview.php:6
+#: app/views/Client/index.php:18 app/views/Client/update.php:21
+msgid "Phone"
+msgstr "Téléphone"
+
+#: app/views/Client/details.php:7
+msgid "Client Details"
+msgstr "Détails du client"
+
+#: app/views/Client/details_subview.php:1
+msgid "Client details"
+msgstr "Détails du client"
+
+#: app/views/Client/details_subview.php:8
+msgid "List my animals"
+msgstr "Lister mes animaux"
+
+#: app/views/Client/index.php:7
+msgid "Client Index"
+msgstr "Indes des clients"
+
+#: app/views/Client/index.php:15
+msgid "All Clients"
+msgstr "Tous les clients"
+
+#: app/views/Client/index.php:16
+msgid "This is the list of clients."
+msgstr "Ceci est la liste des clients."
+
+#: app/views/Client/index.php:18
+msgid "First Name"
+msgstr "Prénom"
+
+#: app/views/Client/index.php:18
+msgid "Last Name"
+msgstr "Nom"
+
+#: app/views/Client/index.php:30
+msgid "animals"
+msgstr "animaux"
+
+#: app/views/Client/update.php:7
+msgid "Client Update"
+msgstr "Mise à jour du client"
+
+#: app/views/Client/update.php:15
+msgid "Client update"
+msgstr "Mise à jour du client"
+
+#: app/views/Client/update.php:16
+msgid "Please enter the details of the client that you want to update."
+msgstr "Veuillez entrer les détails du client que vous voulez mettre à jour."
+
+#: app/views/Main/index.php:7 app/views/Main/index.php:20
+msgid "Landing page"
+msgstr "Page d'accueil"
+
+#: app/views/Main/index.php:16
+msgid "This is a password hash for the word password:"
+msgstr "Ceci est le hash pour le mot password:"
+
+#: app/views/Main/index.php:21
+msgid "Welcome to this Web application."
+msgstr "Bienvenue à cette application Web."
+
+#: app/views/shared/navigation.php:2
+msgid "Client index"
+msgstr "Index des clients"
+
+#: app/views/shared/navigation.php:3
+msgid "Client create"
+msgstr "Création d'un client"
+
+#: app/views/shared/navigation.php:4
+msgid "Main index"
+msgstr "Index principal"
+
+#: app/views/shared/navigation.php:6
+msgid "Log in"
+msgstr "Connexion"
+
+#: app/views/shared/navigation.php:8
+msgid "Log out"
+msgstr "Déconnexion"
+
+#: app/views/shared/navigation.php:11
+msgid "Language"
+msgstr "Langue"
+
+#: app/views/User/login.php:7
+msgid "User login"
+msgstr "Connexion des usagers"
+
+#: app/views/User/login.php:15
+msgid "Log into your user account"
+msgstr "Vous connecter à votre compte"
+
+#: app/views/User/login.php:17 app/views/User/register.php:17
+msgid "Username"
+msgstr "Nom d'usager"
+
+#: app/views/User/login.php:18 app/views/User/register.php:18
+msgid "Password"
+msgstr "Mot de passe"
+
+#: app/views/User/login.php:19
+msgid "Login!"
+msgstr "Connecter!"
+
+#: app/views/User/login.php:21
+msgid "No account?"
+msgstr "Pas de compte?"
+
+#: app/views/User/login.php:21
+msgid "Register here."
+msgstr "S'enregistrer ici."
+
+#: app/views/User/register.php:7
+msgid "User registration"
+msgstr "Enregistrement des usagers"
+
+#: app/views/User/register.php:15
+msgid "Register your user account"
+msgstr "Enregistrer votre compte usager"
+
+#: app/views/User/register.php:19
+msgid "Password confirmation"
+msgstr "Confirmation du mot de passe"
+
+#: app/views/User/register.php:20
+msgid "Register!"
+msgstr "Enregistrer!"
+
+#: app/views/User/register.php:22
+msgid "Already have an account?"
+msgstr "Vous avez déjà un compte?"
+
+#: app/views/User/register.php:22
+msgid "Login here."
+msgstr "Vous connecter ici."
+
+#~ msgid "French"
+#~ msgstr "Français"
+
+#~ msgid "English"
+#~ msgstr "Anglais"
