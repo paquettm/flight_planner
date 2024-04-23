@@ -5,7 +5,7 @@ class User extends \app\core\Model{
 	//TODO: define the properties for this class
 	public $user_id;
 	#[\app\validators\NonEmpty]//definition of validators to apply on property
-	#[\app\validators\Name]//definition of validators to apply on property
+	#[\app\validators\IsEmail]//definition of validators to apply on property
 	public $username;
 	#[\app\validators\NonEmpty]//definition of validators to apply on property
 	public $password_hash;

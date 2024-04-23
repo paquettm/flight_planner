@@ -1,6 +1,15 @@
-# PHP_MVC_Framework
+# Flight planner
 
-Example simple PHP MVC Framework used in class to present the principles of PHP MVC Frameworks in a simplified way.
+Example application to plan trips using air transportation.
+Rules:
+- An airline has a name and is identified by a IATA Airline Code. Ex: Air Canada (AC)
+- An airport is a location identified by a IATA Airport Code. It also has a name, a city, latitude and longitude coordinates, a timezone and a city code, the IATA Airport Code for a city, which may differ from an airport code in larger areas. Ex: Pierre Elliott Trudeau International (YUL) belongs to the Montreal (YMQ) city code.
+- A flight is uniquely numbered for a referenced airline. For the sake of simplicity, **a flight is priced for a single passenger (any gender, any type) in a neutral currency and is available every day of the week**. It references a pair of airports for departure and arrival. It has departure and arrival times **in the corresponding airport timezones**. Ex: AC301 from YUL to YVR departs at 7:35 AM (Montreal) and arrives at 10:05 AM (Vancouver).
+
+Assumptions (beyond those in **bold** in the rules above):
+- Travelers do not have ovenight layovers; connections happen between 00:00 and 23:59 (local time).
+- Travelers set their layover tolerance.
+- Ultra long-haul flights last less than 24 hours (elapsed on plane) and more than 0 smallest time unit.
 
 ## Installation
 

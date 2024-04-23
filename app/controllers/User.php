@@ -2,9 +2,6 @@
 namespace app\controllers;
 
 class User extends \app\core\Controller{
-	
-	//TODO: Model with get, insert, exists
-	//TODO: registration and login view
 
 	function index(){//login here
 		if(!isset($_POST['action'])){//there is no form being submitted
@@ -15,9 +12,14 @@ class User extends \app\core\Controller{
 				if(password_verify($_POST['password'],$user->password_hash)){
 					//yay! login - store that state in a session
 					$_SESSION['username'] = $user->username;
-					$_SESSION['user_id'] = $user->user_id;
 
-					header('location:/User/secureplace');
+					if(isset($_SESSION['redirect'])){
+						header('location:' . $_SESSION['redirect']);
+						unset($_SESSION['redirect']);
+					}else{
+						header('location:/Flight/index');
+
+					}
 				}else{
 					//not the correct password
 					$this->view('User/login','Incorrect username/password combination.');
@@ -33,6 +35,7 @@ class User extends \app\core\Controller{
 			$this->view('User/register');
 		}else{//there is a form submitted
 			$newUser = new \app\models\User();
+			$newUser->user_id = get_user_id();//generated upfront
 			$newUser->username = $_POST['username'];
 			$newUser->password = $_POST['password'];
 			$newUser->password_confirm = $_POST['password_confirm'];
@@ -58,14 +61,6 @@ class User extends \app\core\Controller{
 	function logout(){
 		session_destroy();//deletes the session ID and all data
 		header('location:/User/index');
-	}
-
-	//toy application
-	//TODO: learn about access filtering
-	
-	#[\app\filters\Login]
-	function secureplace(){
-		echo 'You are logged in!<a href="/User/logout">Logout</a>';
 	}
 
 }

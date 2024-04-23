@@ -31,45 +31,46 @@ class Flight extends \app\core\DAO{
 ) as data
 		FROM flight 
 		WHERE departure_airport = :departure_airport 
-		AND arrival_airport = :arrival_airport";
+		AND arrival_airport LIKE :arrival_airport";
 		$STMT = self::$_connection->prepare($SQL);
 		$STMT->execute(['departure_airport'=>$departure_airport,
-						'arrival_airport'=>$arrival_airport]);
+						'arrival_airport'=>"%$arrival_airport%"]);
 		return $STMT->fetchAll(\PDO::FETCH_FUNC,function($data){return self::converter($data);}
 		);
 		//return $STMT->fetchAll();
 	}
 
-	public static function get2FlightPaths($departure_airport, $arrival_airport){
-
-    $SQL = "SELECT JSON_OBJECT(
-    'flights', JSON_ARRAY(
-    	JSON_OBJECT(
-	        'airline', a.airline,
-	        'number', a.number,
-	        'departure_airport', a.departure_airport,
-	        'departure_time', a.departure_time,
-	        'arrival_airport', a.arrival_airport,
-	        'arrival_time', a.arrival_time,
-	        'price', a.price
-	    ),
-	    JSON_OBJECT(
-	        'airline', b.airline,
-	        'number', b.number,
-	        'departure_airport', b.departure_airport,
-	        'departure_time', b.departure_time,
-	        'arrival_airport', b.arrival_airport,
-	        'arrival_time', b.arrival_time,
-	        'price', b.price
-	    )
-	),
-    'total_price', a.price + b.price
-) as data
-FROM flight AS a
-INNER JOIN flight AS b ON a.arrival_airport = b.departure_airport
-WHERE a.departure_airport = :departure_airport
-AND b.arrival_airport = :arrival_airport
-AND a.arrival_time < b.departure_time";
+	public static function get2FlightPaths($departure_airport, $arrival_airport, $layover_tolerance='60'){
+		$hours = intdiv($layover_tolerance,60);
+		$minutes = $layover_tolerance % 60;
+	    $SQL = "SELECT JSON_OBJECT(
+	    'flights', JSON_ARRAY(
+	    	JSON_OBJECT(
+		        'airline', a.airline,
+		        'number', a.number,
+		        'departure_airport', a.departure_airport,
+		        'departure_time', a.departure_time,
+		        'arrival_airport', a.arrival_airport,
+		        'arrival_time', a.arrival_time,
+		        'price', a.price
+		    ),
+		    JSON_OBJECT(
+		        'airline', b.airline,
+		        'number', b.number,
+		        'departure_airport', b.departure_airport,
+		        'departure_time', b.departure_time,
+		        'arrival_airport', b.arrival_airport,
+		        'arrival_time', b.arrival_time,
+		        'price', b.price
+		    )
+		),
+	    'total_price', a.price + b.price
+	) as data
+	FROM flight AS a
+	INNER JOIN flight AS b ON a.arrival_airport = b.departure_airport
+	WHERE a.departure_airport = :departure_airport
+	AND b.arrival_airport = :arrival_airport
+	AND ADDTIME(a.arrival_time, '$hours:$minutes') < b.departure_time";
 
 		$STMT = self::$_connection->prepare($SQL);
 		$STMT->execute(['departure_airport'=>$departure_airport,
@@ -78,7 +79,10 @@ AND a.arrival_time < b.departure_time";
 		);
 	}
 
-	public static function get3FlightPaths($departure_airport, $arrival_airport){
+	public static function get3FlightPaths($departure_airport, $arrival_airport, $layover_tolerance='60'){
+		$hours = intdiv($layover_tolerance,60);
+		$minutes = $layover_tolerance % 60;
+
 		$SQL = "SELECT JSON_OBJECT(
     'flights', JSON_ARRAY(
     	JSON_OBJECT(
@@ -118,8 +122,8 @@ AND a.arrival_time < b.departure_time";
     AND c.arrival_airport = :arrival_airport 
     AND a.arrival_airport <> :arrival_airport
     AND b.arrival_airport <> :arrival_airport
-    AND a.arrival_time < b.departure_time
-    AND b.arrival_time < c.departure_time";
+    AND ADDTIME(a.arrival_time, '$hours:$minutes') < b.departure_time
+    AND ADDTIME(b.arrival_time, '$hours:$minutes') < c.departure_time";
 		$STMT = self::$_connection->prepare($SQL);
 		$STMT->execute(['departure_airport'=>$departure_airport,
 						'arrival_airport'=>$arrival_airport]);
@@ -127,18 +131,18 @@ AND a.arrival_time < b.departure_time";
 		);
 	}
 
-	public function getDepartureAirport(){
+	public static function getDepartureAirport($data){
 		$SQL = 'SELECT * FROM airport WHERE code = :departure_airport';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['departure_airport'=>$this->departure_airport]);
+		$STMT->execute(['departure_airport'=>$data->departure_airport]);
 		$STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\Airport");
 		return $STMT->fetch();
 	}
 
-	public function getArrivalAirport(){
+	public static function getArrivalAirport($data){
 		$SQL = 'SELECT * FROM airport WHERE code = :arrival_airport';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['arrival_airport'=>$this->arrival_airport]);
+		$STMT->execute(['arrival_airport'=>$data->arrival_airport]);
 		$STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\Airport");
 		return $STMT->fetch();
 	}
@@ -190,23 +194,14 @@ AND a.arrival_time < b.departure_time";
 
 //not managing the data in this app
 	protected static function insert($data){
-		/*$SQL = 'INSERT INTO animal(client_id,name,dob) VALUES(:client_id,:name,:dob)';
-		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['client_id'=>$data->client_id,'name'=>$data->name,'dob'=>$data->dob]);*/
 		//TODO
 	}
 
 	protected static function update($data){
-		/*$SQL = 'UPDATE animal SET name = :name, dob = :dob WHERE animal_id = :animal_id';
-		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['name'=>$data->name,'dob'=>$data->dob,'animal_id'=>$data->animal_id]);*/
 		//TODO
 	}
 
 	public static function delete($data){
-		/*$SQL = 'DELETE FROM animal WHERE animal_id = :animal_id';
-		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['animal_id'=>$data->animal_id]);*/
 		//TODO
 	}
 

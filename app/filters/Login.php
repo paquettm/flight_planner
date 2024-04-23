@@ -7,7 +7,8 @@ namespace app\filters;
 class Login extends \app\core\AccessFilter{
 
 	function execute(){
-		if(!isset($_SESSION['user_id'])){
+		if(!isset($_SESSION['username'])){
+			$_SESSION['redirect'] = $_SERVER['REQUEST_URI'];
 			header('location:/User/index');
 			return true; //I want to indicate to the framework that the user is filtered
 		}

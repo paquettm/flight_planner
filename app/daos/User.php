@@ -17,10 +17,10 @@ class User extends \app\core\DAO{
 	}
 
 	protected static function insert($data){
-		$SQL = 'INSERT INTO user(username,password_hash) VALUES(:username,:password_hash)';
+		$SQL = 'INSERT INTO user(user_id,username,password_hash) VALUES(:user_id,:username,:password_hash)';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['username'=>$data->username,'password_hash'=>$data->password_hash]);
-		return self::$_connection->lastInsertId();
+		$STMT->execute(['user_id'=>$data->user_id,'username'=>$data->username,'password_hash'=>$data->password_hash]);
+		return $STMT->rowCount();
 	}
 
 	protected static function update($data){
