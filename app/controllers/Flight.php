@@ -9,12 +9,24 @@ class Flight extends \app\core\Controller{
 
 	public function index(){
 		if(isset($_GET['action'])){
+			$trip_type= $_GET['trip_type'];
 			$start_date = $_GET['start_date'];
 			$departure_airport = substr($_GET['departure'],0,3);
 			$arrival_airport = substr($_GET['arrival'],0,3);
 			$connections = $_GET['connections'];
 			$layover_tolerance = $_GET['layover_tolerance']; //minutes needed for layover (may include baggage claim/recheck in certain cases)
 			$stopover_tolerance = $_GET['stopover_tolerance']; //stop at a city while traveling
+
+			if($trip_type=="round_trip"){
+				$_SESSION['round_trip'] = ['start_date'=> $start_date,
+				'return_date'=> $_GET['return_date'],
+				'departure_airport'=> $departure_airport,
+				'arrival_airport'=> $arrival_airport,
+				'connections'=> $connections,
+				'layover_tolerance'=> $layover_tolerance,
+				'stopover_tolerance'=> $stopover_tolerance];
+			}//preparation for return trip
+
 			$two_stop_paths = [];
 			$one_stop_paths = [];
 

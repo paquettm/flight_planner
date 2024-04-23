@@ -62,8 +62,6 @@
                         <select name="trip_type" id="trip_type" class="form-select">
                             <option value="one_way"><?=_('One Way')?></option>
                             <option value="round_trip"><?=_('Round Trip')?></option>
-                            <option value="open_jaw"><?=_('Open Jaw')?></option>
-                            <option value="multi_city"><?=_('Multi-city')?></option>
                         </select>
                     </div>
 
@@ -178,6 +176,24 @@
             document.getElementById('departure').addEventListener('input', (event) => handleInputEvent(event, 'departure'));
             document.getElementById('arrival').addEventListener('input', (event) => handleInputEvent(event, 'arrival'));
         });
+    </script>
+        <script type="text/javascript">
+        // Function to update the min attribute of return_date based on the selected start_date
+        function updateReturnDateMin() {
+            // Get the selected start_date value
+            const startDate = document.getElementById('start_date').value;
+            const returnDateElement = document.getElementById('return_date');
+
+            // Update the min attribute of return_date to match start_date
+            returnDateElement.min = startDate;
+            if(returnDateElement.value < startDate)
+                returnDateElement.value = startDate;
+
+            document.getElementById('return_date').min = startDate;
+        }
+
+        // Add an event listener to the start_date input field
+        document.getElementById('start_date').addEventListener('change', updateReturnDateMin);
     </script>
 </body>
 </html>
