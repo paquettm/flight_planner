@@ -40,7 +40,7 @@ class Flight extends \app\core\DAO{
 		//return $STMT->fetchAll();
 	}
 
-	public static function get2FlightPaths($departure_airport, $arrival_airport, $layover_tolerance='60'){
+	public static function get2FlightPaths($departure_airport, $arrival_airport, $layover_tolerance='60',$stopover=false){
 		$hours = intdiv($layover_tolerance,60);
 		$minutes = $layover_tolerance % 60;
 	    $SQL = "SELECT JSON_OBJECT(
@@ -70,7 +70,7 @@ class Flight extends \app\core\DAO{
 	INNER JOIN flight AS b ON a.arrival_airport = b.departure_airport
 	WHERE a.departure_airport = :departure_airport
 	AND b.arrival_airport = :arrival_airport
-	AND ADDTIME(a.arrival_time, '$hours:$minutes') < b.departure_time";
+	AND (ADDTIME(a.arrival_time, '$hours:$minutes') < b.departure_time" . ($stopover?" OR a.arrival_time > b.departure_time":"") . ')';
 
 		$STMT = self::$_connection->prepare($SQL);
 		$STMT->execute(['departure_airport'=>$departure_airport,
@@ -79,7 +79,7 @@ class Flight extends \app\core\DAO{
 		);
 	}
 
-	public static function get3FlightPaths($departure_airport, $arrival_airport, $layover_tolerance='60'){
+	public static function get3FlightPaths($departure_airport, $arrival_airport, $layover_tolerance='60',$stopover=false){
 		$hours = intdiv($layover_tolerance,60);
 		$minutes = $layover_tolerance % 60;
 
@@ -122,8 +122,8 @@ class Flight extends \app\core\DAO{
     AND c.arrival_airport = :arrival_airport 
     AND a.arrival_airport <> :arrival_airport
     AND b.arrival_airport <> :arrival_airport
-    AND ADDTIME(a.arrival_time, '$hours:$minutes') < b.departure_time
-    AND ADDTIME(b.arrival_time, '$hours:$minutes') < c.departure_time";
+    AND (ADDTIME(a.arrival_time, '$hours:$minutes') < b.departure_time" . ($stopover?" OR a.arrival_time > b.departure_time":"") . ")
+    AND (ADDTIME(b.arrival_time, '$hours:$minutes') < c.departure_time" . ($stopover?" OR b.arrival_time > c.departure_time":"") . ')';
 		$STMT = self::$_connection->prepare($SQL);
 		$STMT->execute(['departure_airport'=>$departure_airport,
 						'arrival_airport'=>$arrival_airport]);

@@ -20,7 +20,7 @@
             z-index: 1000;
             background-color: white;
             border: 1px solid #ccc;
-            width: 100%; /* Match the input width */
+            max-width: 100%; /* Match the input width */
             max-height: 200px;
             overflow-y: auto;
             display: none; /* Initially hidden */
@@ -38,34 +38,42 @@
     </style>
 </head>
 <body>
-    <div class="container mt-3">
-        <form method="get" action="/Flight/index">
-            <div class="row mb-3">
-                <fieldset class="col-12">
+<div class="container mt-3">
+    <h1 class="mb-4"><?=_('Find your next air travel')?></h1>
+    <a href='/Flight/TravelPlan' class="btn btn-primary"><?=_('See my current travel plans')?></a>
+    <form method="get" action="/Flight/index">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <fieldset>
                     <legend class="form-label"><?=_('Where and When')?></legend>
-                    <div class="col-md-3 position-relative">
+                    <div class="mb-3">
                         <label for="departure" class="form-label"><?=_('From')?></label>
                         <input type="text" name="departure" id="departure" class="form-control" placeholder="Departure airport" value='<?=$departure?>'>
-                        <div id="departure-dropdown" class="dropdown-container"></div>
+                        <div id="departure-dropdown" class="dropdown-container mb-3"></div>
                     </div>
-                    <div class="col-md-3 position-relative">
+
+                    <div class="mb-3">
                         <label for="arrival" class="form-label"><?=_('To')?></label>
                         <input type="text" name="arrival" id="arrival" class="form-control" placeholder="Arrival airport">
-                        <div id="arrival-dropdown" class="dropdown-container"></div>
+                        <div id="arrival-dropdown" class="dropdown-container mb-3"></div>
                     </div>
-                    <div class="col-md-3">
-                        <label for="start_date" class="form-label"><?=_('Travel Start Date:')?></label>
+
+                    <div class="mb-3">
+                        <label for="start_date" class="form-label"><?=_('Start Date')?></label>
                         <input type="date" name="start_date" id="start_date" class="form-control" value="<?=date('Y-m-d')?>" min="<?=date('Y-m-d')?>" max="<?= date('Y-m-d', strtotime('+1 year'))?>">
                     </div>
-                    <div class="col-md-3">
-                        <label for="return_date" class="form-label"><?=_('Travel Start Date:')?></label>
+
+                    <div class="mb-3">
+                        <label for="return_date" class="form-label"><?=_('Return Date')?></label>
                         <input type="date" name="return_date" id="return_date" class="form-control" value="<?=date('Y-m-d')?>" min="<?=date('Y-m-d')?>" max="<?= date('Y-m-d', strtotime('+1 year'))?>">
                     </div>
                 </fieldset>
             </div>
-            <div class="row mb-3">
-                <fieldset class="col-12">
-                    <legend class="form-label"><?=_('Travel options')?></legend>
+
+            <div class="col-md-6 mb-4">
+                <fieldset>
+                    <legend class="form-label"><?=_('Options')?></legend>
+
                     <div class="mb-3">
                         <label for="trip_type" class="form-label"><?=_('Trip type')?></label>
                         <select name="trip_type" id="trip_type" class="form-select">
@@ -75,25 +83,37 @@
                             <option value="multi_city"><?=_('Multi-city')?></option>
                         </select>
                     </div>
+
                     <div class="mb-3">
-                        <label for="connections" class="form-label"><?=_('Number of connections')?></label>
+                        <label for="connections" class="form-label"><?=_('Connections')?></label>
                         <select name="connections" id="connections" class="form-select">
                             <option value="0"><?=_('Direct flights only')?></option>
                             <option value="1"><?=_('One connection or direct flights')?></option>
                             <option value="2"><?=_('Up to 2 connections')?></option>
                         </select>
                     </div>
+
                     <div class="mb-3">
-                        <label for="layover_tolerance" class="form-label"><?=_('Minimum time between flights')?></label>
-                        <input type='number' name='layover_tolerance' value='90' class='form-control' />
+                        <label for="layover_tolerance" class="form-label"><?=_('Minimum layover time')?></label>
+                        <input type="number" name="layover_tolerance" id="layover_tolerance"value="90" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="stopover_tolerance" class="form-label"><?=_('Allow stopovers')?></label>
+                        <select name="stopover_tolerance" id="stopover_tolerance" class="form-select">
+                            <option value="0"><?=_('No')?></option>
+                            <option value="1"><?=_('Yes')?></option>
+                        </select>
                     </div>
                 </fieldset>
             </div>
-            <div class="d-grid">
-                <input type="submit" name="action" value="Search" class="btn btn-primary">
-            </div>
-        </form>
-    </div>
+        </div>
+
+        <div class="d-grid">
+            <input type="submit" name="action" value="Search" class="btn btn-primary">
+        </div>
+    </form>
+</div>
+
     <script type='text/javascript'>
         // Define the function to search for an airport by term
         function searchAirport(term, inputFieldId) {

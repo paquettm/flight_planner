@@ -6,7 +6,7 @@
                     <?php
                         $count = count($trip->flights); 
                         foreach ($trip->flights as $index => $flight): ?>
-                        <div class="row">
+                        <div class="row<?=redeyeClass($flight)?>">
                             <div class="col-md-3">
                                 <strong><?=_('Flight:')?></strong> <?=$flight->airline . " " . $flight->number?>
                             </div>
@@ -21,7 +21,7 @@
                             </div>
                             <div class="col-md-3">
                                 <strong><?=_('Flight Duration:')?></strong> <?php
-                                    [$flight_time,$arrival_time] = \app\models\Flight::flightTime($flight, '2024-01-01');
+                                    [$flight_time,$arrival_time] = \app\models\Flight::flightTime($flight, $trip->start_date);
                                     echo $flight_time->format('%H hours, %i minutes');
                                 ?>
                             </div>
@@ -33,17 +33,18 @@
                          <!-- Add horizontal rule to separate flights -->
                         <hr>
                     <?php endforeach; ?>
-                </div>
-                <div class="row">
+                    <div class="row">
                         <div class="col-md-3"><strong><?=_('Total Price: $')?></strong><?= number_format($trip->total_price, 2)?></div>
                         <div class="col-md-3"><strong><?=_('Number of Flights: ')?></strong><?= count($trip->flights)?></div>
                         <div class="col-md-3"><strong><?=_('Total Trip Time: ')?></strong>
                             <?php
-                     [$total_trip_time,$total_flight_time] = \app\models\Flight::tripTime($trip->flights, '2024-01-01');
+                     [$total_trip_time,$total_flight_time] = \app\models\Flight::tripTime($trip->flights, $trip->start_date);
                      echo ($total_trip_time->d>0?$total_trip_time->format(_('%d days, %Hh%Im')):$total_trip_time->format(_('%Hh%Im')));
                  ?></div>
                         <div class="col-md-3"><strong><?= 'Total Flight Time: '?></strong>
                             <?= ($total_flight_time->d>0?$total_flight_time->format(_('%d days, %Hh%Im')):$total_flight_time->format(_('%Hh%Im')))?></div>
+                </div>
+                
                 </div>
                 <div class="card-footer">
                     <!-- Add a button to select the trip -->

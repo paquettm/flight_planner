@@ -7,10 +7,23 @@ class User extends \app\core\DAO{
 		return $data->get($data->username) != false;
 	}
 
+	public static function numberExists($data){ //returns false if the record does not exist and true otherwise
+		return $data->getById($data->user_id) != false;
+	}
+
 	public static function get($username){
 		$SQL = 'SELECT * FROM user WHERE username = :username';
 		$STMT = self::$_connection->prepare($SQL);
 		$STMT->execute(['username'=>$username]);
+		//TODO:add something here to make the return types cooler
+		$STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\User");
+		return $STMT->fetch();
+	}
+
+	public static function getById($user_id){
+		$SQL = 'SELECT * FROM user WHERE user_id = :user_id';
+		$STMT = self::$_connection->prepare($SQL);
+		$STMT->execute(['user_id'=>$user_id]);
 		//TODO:add something here to make the return types cooler
 		$STMT->setFetchMode(\PDO::FETCH_CLASS, "app\models\User");
 		return $STMT->fetch();

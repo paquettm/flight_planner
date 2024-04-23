@@ -39,21 +39,30 @@ class User extends \app\core\Controller{
 			$newUser->username = $_POST['username'];
 			$newUser->password = $_POST['password'];
 			$newUser->password_confirm = $_POST['password_confirm'];
+			if($_POST['password'] != $_POST['password_confirm'] || empty($_POST['password'])){
+				header('location:/User/register?error=password need be nonempty and must match!');
+				return;
+			}
 
-			 if(!$newUser->exists() && $_POST['password'] == $_POST['password_confirm']){
-			 	$newUser->password_hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+			if($newUser->exists()){
+				header('location:/User/register?error=The user account with that email address already exists.');
+				return;
+			}
 
-			 	if($newUser->insert()){
-					header('location:/User/index');
-				 }
-				 else
-				 {
-					header('location:/User/register?error=FAIL!');
-				 }
+			if($newUser->numberExists()){
+				header('location:/User/register?error=The user account with that number already exists.');
+				return;
+			}
+			 	
+			$newUser->password_hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-			 }else{
-				$this->view('User/register','The user account with that username already exists.');
-			 }
+		 	if($newUser->insert()){
+				header('location:/User/index');
+			}
+			else
+			{
+				header('location:/User/register?error=FAIL!');
+			}
 		}
 	}
 
