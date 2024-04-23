@@ -63,6 +63,7 @@ class Flight extends \app\core\Controller{
 		$this->view('Flight/travelPlan',['planned_trips'=>$planned_trips,'confirmed_trips'=>$confirmed_trips]);
 	}
 
+	#[\app\filters\Login]
 	public function deleteTrip(){
 		$trip = new \app\models\Trip();
 		$trip->start_date = $_GET['start_date'];

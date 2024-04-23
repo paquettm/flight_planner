@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?=_('Travel Plan')?></title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/style.css" />
+    <title><?=_('Travel Plan')?></title>
 </head>
 <body>
 <?php
@@ -17,7 +18,13 @@ function redeyeClass($flight){
 }
 ?>
     <div class="container mt-4">
-        <h1><?=_('Your travel plans')?></h1>
+        <h1><?=_('Your travel plans')?>
+        <?=$_SESSION['username']??""?></h1>
+        <?php
+        if(isset($_SESSION['username'])){?>
+            <a href='/User/logout?redirect=<?=$_SERVER['REQUEST_URI']?>' class="btn btn-primary">Log out</a>
+        <?php    }
+        ?>
         <p>Flights that fly through the night are highlighted in yellow.</p>
         <h2><?=_('Planned trips')?></h2> <a href='/Flight/index' class="btn btn-primary"><?=_('Add more travel')?></a>
         <!-- Loop through trips array -->

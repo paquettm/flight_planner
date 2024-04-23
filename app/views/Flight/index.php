@@ -10,36 +10,19 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/style.css" />
+
     <title><?=_('Flight Selector')?></title>
-
-    <!-- Custom CSS for dropdown container -->
-    <style>
-        /* Dropdown container */
-        .dropdown-container {
-            position: absolute;
-            z-index: 1000;
-            background-color: white;
-            border: 1px solid #ccc;
-            max-width: 100%; /* Match the input width */
-            max-height: 200px;
-            overflow-y: auto;
-            display: none; /* Initially hidden */
-        }
-
-        /* Dropdown container item */
-        .dropdown-item {
-            padding: 8px;
-            cursor: pointer;
-        }
-
-        .dropdown-item:hover {
-            background-color: #f0f0f0;
-        }
-    </style>
 </head>
 <body>
 <div class="container mt-3">
-    <h1 class="mb-4"><?=_('Find your next air travel')?></h1>
+    <h1 class="mb-4"><?=_('Find your next air travel')?>
+    <?=$_SESSION['username']??""?></h1>
+    <?php
+        if(isset($_SESSION['username'])){?>
+            <a href='/User/logout?redirect=<?=$_SERVER['REQUEST_URI']?>' class="btn btn-primary">Log out</a>
+    <?php    }
+    ?>
     <a href='/Flight/TravelPlan' class="btn btn-primary"><?=_('See my current travel plans')?></a>
     <form method="get" action="/Flight/index">
         <div class="row">
@@ -87,9 +70,9 @@
                     <div class="mb-3">
                         <label for="connections" class="form-label"><?=_('Connections')?></label>
                         <select name="connections" id="connections" class="form-select">
-                            <option value="0"><?=_('Direct flights only')?></option>
-                            <option value="1"><?=_('One connection or direct flights')?></option>
                             <option value="2"><?=_('Up to 2 connections')?></option>
+                            <option value="1"><?=_('One connection or direct flights')?></option>
+                            <option value="0"><?=_('Direct flights only')?></option>
                         </select>
                     </div>
 
