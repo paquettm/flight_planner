@@ -48,7 +48,7 @@
                 </div>
                 <div class="card-footer">
                     <!-- Add a button to select the trip -->
-                    <a href='/Flight/index?start_airport=<?= $trip->getArrival() ?>&start_date=<?=$trip->start_date?>' class="btn btn-danger"><?=_('Travel from here')?></a>
+                    <a href='/Flight/index?departure_airport=<?= $trip->getArrival() ?>&start_date=<?=$trip->start_date?>' class="btn btn-primary"><?=_('Travel from here')?></a>
                     <a href='/Flight/deleteTrip?flights=<?= $trip->flightKeys() ?>&start_date=<?=$trip->start_date?>' class="btn btn-danger"><?=_('Delete Trip')?></a>
                     <a href='/Flight/confirmTrip?flights=<?= $trip->flightKeys() ?>&start_date=<?=$trip->start_date?>' class="btn btn-success"><?=_('Confirm Trip')?></a>
                 </div>

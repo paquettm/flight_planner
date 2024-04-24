@@ -26,6 +26,7 @@ function redeyeClass($flight){
         <?php    }
         ?>
         <p>Flights that fly through the night are highlighted in yellow.</p>
+        <p>Add more segments to your travel by pressing "Travel from here" next to a set of flights</p>
         <h2><?=_('Planned trips')?></h2> <a href='/Flight/index' class="btn btn-primary"><?=_('Add more travel')?></a>
         <!-- Loop through trips array -->
         <?php 

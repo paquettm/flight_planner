@@ -13,18 +13,46 @@ Assumptions (beyond those in **bold** in the rules above):
 
 ## Setup
 
-1. Clone the repository
-2. Run `composer install`
-3. Run `composer dump-autoload`
-4. Create a .env file in the project base directory with your database connection information as follows, e.g.,:
+1. Clone the repository from the command line using 
+```
+git clone https://github.com/paquettm/flight_planner.git
+```
+2. From the command line navigate to the project folder with the command 
+```
+cd flight_planner
+```
+3. Make sure your docker engine is running (maybe start Docker Desktop)
+4. From the command line run the command
+```
+docker run --name myXampp -p 22:22 -p 80:80 -d -v %CD%:/opt/lampp/htdocs tomsik68/xampp
+```
+Hopefully this also runs on ARM architectures, but this remains untested.
+5. Enter the container bash environment with the command
+```
+docker exec -it myXapp bash
+```
+6. To install phpenv dependency, run 
+```
+../bin/php composer.phar install
+```
+7. Run 
+```
+composer dump-autoload
+```
+8. Create a .env file in the project base directory with your database connection information as follows, e.g.,:
 ```
 db_host="localhost"
-db_user="applicationDBUser"
-db_pass="applicationDBUserPassword"
-db_name="applicationDBName"
+db_user="root"
+db_pass=""
+db_name="flight_data"
 ```
+9. Point your browser to localhost/phpmyadmin.
+10. Import the `flight_data.sql` file from the project folder.
+11. Point your browser to localhost and use the application.
 
 # TODO
+So many things to do, so little time:
+
 - i18n is deactivated. Needs to be done for the environment. Validate i18n and perform l10n.
 - Apply the following SQL to lat/long data with results from geocoding.
 ```
@@ -33,3 +61,5 @@ SELECT latitude, longitude, SQRT(
     POW(69.1 * ([startlng] - longitude) * COS(latitude / 57.3), 2)) AS distance
 FROM TableName HAVING distance < 25 ORDER BY distance;
 ```
+- Add maps (leaflet?)
+- Actual semblance of transactions when confirming flight sets.

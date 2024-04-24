@@ -30,15 +30,15 @@
                 <fieldset>
                     <legend class="form-label"><?=_('Where and When')?></legend>
                     <div class="mb-3">
-                        <label for="departure" class="form-label"><?=_('From')?></label>
-                        <input type="text" name="departure" id="departure" class="form-control" placeholder="Departure airport" value='<?=$departure?>'>
-                        <div id="departure-dropdown" class="dropdown-container mb-3"></div>
+                        <label for="departure_airport" class="form-label"><?=_('From')?></label>
+                        <input type="text" name="departure_airport" id="departure_airport" class="form-control" placeholder="Departure airport" value='<?=$departure_airport?>'>
+                        <div id="departure_airport-dropdown" class="dropdown-container mb-3"></div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="arrival" class="form-label"><?=_('To')?></label>
-                        <input type="text" name="arrival" id="arrival" class="form-control" placeholder="Arrival airport">
-                        <div id="arrival-dropdown" class="dropdown-container mb-3"></div>
+                        <label for="arrival_airport" class="form-label"><?=_('To')?></label>
+                        <input type="text" name="arrival_airport" id="arrival_airport" class="form-control" placeholder="Arrival airport">
+                        <div id="arrival_airport-dropdown" class="dropdown-container mb-3"></div>
                     </div>
 
                     <div class="mb-3">
@@ -60,8 +60,8 @@
                     <div class="mb-3">
                         <label for="trip_type" class="form-label"><?=_('Trip type')?></label>
                         <select name="trip_type" id="trip_type" class="form-select">
-                            <option value="one_way"><?=_('One Way')?></option>
-                            <option value="round_trip"><?=_('Round Trip')?></option>
+                            <option value="departure"><?=_('Round Trip')?></option>
+                            <option value="one way"><?=_('One Way')?></option>
                         </select>
                     </div>
 
@@ -149,7 +149,7 @@
             airportListContainer.style.display = 'none';
         }
 
-        // Event handler for the 'input' event on the departure and arrival input fields
+        // Event handler for the 'input' event on the departure_airport and arrival_airport input fields
         function handleInputEvent(event, inputFieldId) {
             // Get the current input value
             const searchTerm = event.target.value;
@@ -173,8 +173,8 @@
         // Wait for the DOM content to load
         document.addEventListener('DOMContentLoaded', () => {
             // Add event listeners for the 'input' event
-            document.getElementById('departure').addEventListener('input', (event) => handleInputEvent(event, 'departure'));
-            document.getElementById('arrival').addEventListener('input', (event) => handleInputEvent(event, 'arrival'));
+            document.getElementById('departure_airport').addEventListener('input', (event) => handleInputEvent(event, 'departure_airport'));
+            document.getElementById('arrival_airport').addEventListener('input', (event) => handleInputEvent(event, 'arrival_airport'));
         });
     </script>
         <script type="text/javascript">

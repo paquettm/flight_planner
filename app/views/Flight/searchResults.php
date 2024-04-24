@@ -22,8 +22,11 @@ function redeyeClass($flight){
         <h1><?=_('Your searched flights')?></h1>
         <p>Flights that fly through the night are highlighted in yellow.</p>
         <p>These are the search results for flights leaving on <strong><?= $start_date ?></strong> from <strong><?=$departure_airport?></strong> and going to <strong><?=$arrival_airport?></strong>, according to your travel options.</p>
+        <p>Note that the flights are sorted with least expensive trajectories first.</p>
         <a href='/Flight/index' class="btn btn-primary"><?=_('Start a new search')?></a>
-        <h2><?=_('Available Trips')?></h2> 
+        <h2><?=_('Available Trips')?></h2>
+        <p>Please select your <strong><?= $trip_type ?></strong> travel choice.</h3>
+        </p>
         <!-- Loop through trips array -->
         <?php 
         foreach ($trips as  $trip){
