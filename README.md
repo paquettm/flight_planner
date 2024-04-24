@@ -39,7 +39,7 @@ and run
 ```
 ../bin/php composer.phar install
 ```
-7. Create a .env file in the project base directory with your database connection information as follows, e.g.,:
+7. Create a .env (maybe with `nano .env`) file in the project base directory with your database connection information as follows, e.g.,:
 ```
 db_host="localhost"
 db_user="root"
