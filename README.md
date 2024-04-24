@@ -39,20 +39,16 @@ and run
 ```
 ../bin/php composer.phar install
 ```
-7. Run 
-```
-composer dump-autoload
-```
-8. Create a .env file in the project base directory with your database connection information as follows, e.g.,:
+7. Create a .env file in the project base directory with your database connection information as follows, e.g.,:
 ```
 db_host="localhost"
 db_user="root"
 db_pass=""
 db_name="flight_data"
 ```
-9. Point your browser to localhost/phpmyadmin.
-10. Import the `flight_data.sql` file from the project folder.
-11. Point your browser to localhost and use the application.
+8. Point your browser to localhost/phpmyadmin.
+9. Import the `flight_data.sql` file from the project folder.
+10. Point your browser to localhost and use the application.
 
 # TODO
 So many things to do, so little time:
