@@ -9,3 +9,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 
 RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
 RewriteRule ^()$ index.php?url=$1 [QSA,L]
+<Files .env>
+  Order allow,deny
+  Deny from all
+</Files>
