@@ -19,7 +19,7 @@ function redeyeClass($flight){
 ?>
     <div class="container mt-4">
         <h1><?=_('Your travel plans')?>
-        <?=$_SESSION['username']??""?></h1>
+        <?=$_SESSION['username']??"<a href='/User/index?redirect=$_SERVER[REQUEST_URI]' class='btn btn-primary'>Log in to see your saved data</a>"?></h1>
         <?php
         if(isset($_SESSION['username'])){?>
             <a href='/User/logout?redirect=<?=$_SERVER['REQUEST_URI']?>' class="btn btn-primary">Log out</a>

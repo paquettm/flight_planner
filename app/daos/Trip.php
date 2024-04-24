@@ -67,6 +67,19 @@ class Trip extends \app\core\DAO{
 		self::update($data);
 	}
 
+	public static function updateUserId($old_user_id,$new_user_id){
+		$SQL='UPDATE trip SET
+		user_id = :new_user_id
+		WHERE user_id = :old_user_id';
+		$STMT = self::$_connection->prepare($SQL);
+		$STMT->execute(
+			[	
+				'new_user_id'=>$new_user_id,
+				'old_user_id'=>$old_user_id
+			]
+		);
+	}
+
 	protected static function update($data){
 		$SQL='UPDATE trip SET
 		purchased=:purchased

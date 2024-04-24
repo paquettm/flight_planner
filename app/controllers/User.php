@@ -13,9 +13,21 @@ class User extends \app\core\Controller{
 					//yay! login - store that state in a session
 					$_SESSION['username'] = $user->username;
 
+//user logging in may have flights in their cart and flights in their account
+//the user_id in the cookie may not match that of the unconfirmed flights
+//must update
+					$old_user_id = get_user_id();
+					$new_user_id = $user->user_id;
+					\app\daos\Trip::updateUserId($old_user_id,$new_user_id);
+
+					set_user_id($new_user_id);
+
 					if(isset($_SESSION['redirect'])){
 						header('location:' . $_SESSION['redirect']);
 						unset($_SESSION['redirect']);
+					}elseif(isset($_GET['redirect'])){
+						header('location:' . $_GET['redirect']);
+						unset($_GET['redirect']);
 					}else{
 						header('location:/Flight/index');
 
@@ -69,6 +81,7 @@ class User extends \app\core\Controller{
 	#[\app\filters\Login]
 	function logout(){
 		session_destroy();//deletes the session ID and all data
+		delete_user_id();
 		header('location:' . ($_GET['redirect']??'/User/index'));
 	}
 

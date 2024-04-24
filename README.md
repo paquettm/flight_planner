@@ -57,7 +57,6 @@ db_name="flight_data"
 # TODO
 So many things to do, so little time:
 
-- Delete user_id cookie on logout and load on login.
 - i18n is deactivated. Needs to be done for the environment. Validate i18n and perform l10n.
 - Apply the following SQL to lat/long data with results from geocoding.
 ```
@@ -67,4 +66,5 @@ SELECT latitude, longitude, SQRT(
 FROM TableName HAVING distance < 25 ORDER BY distance;
 ```
 - Add maps (leaflet?)
-- Actual semblance of transactions when confirming flight sets.
+- Simulate transactions when confirming flight sets.
+- Move trip storage to cookie before confirmation and to DB after.
