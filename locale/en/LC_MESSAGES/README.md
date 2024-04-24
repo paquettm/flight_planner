@@ -1,0 +1,1 @@
+Place translations here under Windows with only en localisation installed.
