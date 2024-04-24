@@ -57,6 +57,7 @@ db_name="flight_data"
 # TODO
 So many things to do, so little time:
 
+- Delete user_id cookie on logout and load on login.
 - i18n is deactivated. Needs to be done for the environment. Validate i18n and perform l10n.
 - Apply the following SQL to lat/long data with results from geocoding.
 ```
