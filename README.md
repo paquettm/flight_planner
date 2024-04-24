@@ -29,9 +29,13 @@ docker run --name myXampp -p 22:22 -p 80:80 -d -v %CD%:/opt/lampp/htdocs tomsik6
 Hopefully this also runs on ARM architectures, but this remains untested.
 5. Enter the container bash environment with the command
 ```
-docker exec -it myXapp bash
+docker exec -it myXampp bash
 ```
-6. To install phpenv dependency, run 
+6. To install phpenv dependency, navigate to the web root folder with
+```
+cd opt/lampp/htdocs
+```
+and run 
 ```
 ../bin/php composer.phar install
 ```
