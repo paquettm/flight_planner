@@ -1,5 +1,9 @@
 # Flight planner
 
+## Live demo
+
+See the [live demo](https://flightplanner.cstutoring.ca/).
+
 Example application to plan trips using air transportation.
 Rules:
 - An airline has a name and is identified by a IATA Airline Code. Ex: Air Canada (AC)
