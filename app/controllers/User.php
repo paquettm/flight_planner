@@ -18,7 +18,9 @@ class User extends \app\core\Controller{
 //must update
 					$old_user_id = get_user_id();
 					$new_user_id = $user->user_id;
-					\app\daos\Trip::updateUserId($old_user_id,$new_user_id);
+
+					if ($old_user_id != $new_user_id)
+					    \app\daos\Trip::updateUserId($old_user_id,$new_user_id);
 
 					set_user_id($new_user_id);
 
